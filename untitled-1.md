@@ -29,13 +29,14 @@ series: 4
 ### TD\(0\): one-step TD
 
 * TD는 MC와 다르게 next time step까지만 기다린다.
-  * 즉, $S_t$에서 $S_{t+1}$로 넘어간 순간 바로 $R_{t +1}$와 $V\(S_{t+1}\)$의 **추정**값을 이용해 update를 시도한다.
+  * 즉, $$S_t$$_에서_ $$S{t+1}$$로 넘어간 순간 바로 $R_{t +1}$와 $V\(S_{t+1}\)$의 **추정**값을 이용해 update를 시도한다.
   * $$
     V\left(S_{t}\right) \leftarrow         V\left(S_{t}\right)+\alpha\left[R_{t+1}+\gamma V\left(S_{t+1}\right)-V\left(S_{t}\right)\right]
     $$
   * ![image-20201023163536850](https://i.loli.net/2020/10/23/Z2ctdA6YiTEWuoH.png)
 * 식에서 확인할 수 있듯이, MC의 update는 $G_t$이고, TD의 update는 $R_{t+1}+\gamma V\(S\_{t+1}\)$ 이다.
-* ![image-20201023162844126](https://i.loli.net/2020/10/23/7dTWvMGcRA1NnLB.png)
+* 
+![image-20201023162844126](https://i.loli.net/2020/10/23/7dTWvMGcRA1NnLB.png)
 
 #### Bootstrap of TD
 
@@ -84,9 +85,9 @@ series: 4
 * TD 방법 vs MC 방법
   * 한 episode가 끝날때 까지 기다리지 않아도 괜찮다.
   * 어떤 task는 굉장히 긴 episode가 있기 때문에 학습이 매우 느려질 수 있다.
-* 그리고 TD 방식은 고정된 policy $\pi$에 대해서 TD\(0\)을 통해 $v\_\pi$가 수렴하는 것이 보장되어 있다.
-* 아직까지 수학적으로 증명되진 않았지만, TD 방법이 실제로 constant-$\alpha$ MC 방법보다 빠르게 수렴하는 것으로 알려져있다.
-  * 하지만 $\alpha$값이 적절히 잡혀야함
+* 그리고 TD 방식은 고정된 policy $$\pi$$에 대해서 TD\(0\)을 통해 $$v_\pi$$가 수렴하는 것이 보장되어 있다.
+* 아직까지 수학적으로 증명되진 않았지만, TD 방법이 실제로 constant-$$\alpha$$ MC 방법보다 빠르게 수렴하는 것으로 알려져있다.
+  * 하지만 $$\alpha$$ 값이 적절히 잡혀야함
   * ![image-20201023164827689](https://i.loli.net/2020/10/23/F52MmP6peYJVUzW.png)
 
 ## Optimality of TD\(0\)
@@ -107,15 +108,17 @@ MC 방법과 마찬가지로, exploration과 exploitation의 trade off가 존재
 * SARSA는 state값 말고, action 값을 이용하여 policy를 improve하는 방법이다.
   * 즉, transitions from state–action pair to state–action pair를 고려해야한다.  
   * 이전의 TD\(0\)에서 state 대신 action 값을 이용한것이라 생각하면 된다.
-* ![image-20201023172332416](https://i.loli.net/2020/10/23/WZvHVdpfSL3CAPI.png)
-* $$
+* * $$
   Q\left(S_{t}, A_{t}\right) \leftarrow Q\left(S_{t}, A_{t}\right)+\alpha\left[R_{t+1}+\gamma Q\left(S_{t+1}, A_{t+1}\right)-Q\left(S_{t}, A_{t}\right)\right]
   $$
 
   * ![image-20201023172646120](https://i.loli.net/2020/10/23/u2LqvWVTtze8Ujr.png)
   * 여기서 $S_{t+1}$가 terminal이면,  $Q\left\(S_{t+1}, A\_{t+1}\right\)$ 은 0으로 정한다.
 * 매 학습마다 $\left\(S_{t}, A_{t}, R_{t+1}, S_{t+1}, A\_{t+1}\right\)$ 를 사용하기 때문에 SARSA라 불린다.
-* ![image-20201023173337312](https://i.loli.net/2020/10/23/UbZQXC3GcDFylAs.png)
+* 
+![image-20201023173337312](https://i.loli.net/2020/10/23/UbZQXC3GcDFylAs.png)
+
+![image-20201023172332416](https://i.loli.net/2020/10/23/WZvHVdpfSL3CAPI.png)
 
 ## Q-learning: Off-policy TD Control
 
